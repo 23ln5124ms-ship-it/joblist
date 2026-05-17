@@ -5,17 +5,10 @@ namespace Database\Factories;
 use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Job>
- */
-
 class JobFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected static ?string $password;
+
     public function definition(): array
     {
         return [
@@ -23,5 +16,11 @@ class JobFactory extends Factory
             'salary' => '$' . fake()->numberBetween(40000, 100000),
             'description' => fake()->paragraph(),
         ];
+    }
+    public function unverified(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'email_verified_at' => null,
+        ]);
     }
 }

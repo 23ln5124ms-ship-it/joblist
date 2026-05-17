@@ -6,16 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('job_listing', function (Blueprint $table) {
             $table->id('id');
             $table->string('title');
             $table->string('salary');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
         });
     }
